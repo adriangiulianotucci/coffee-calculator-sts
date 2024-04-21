@@ -1,7 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
+import { initializeFirebase } from './firebase/fcm';
+import {  useState} from 'react';
 
 function App() {
+  const [token, setToken] = useState(undefined)
+
+  const handleClick = () => {
+    initializeFirebase(setToken)
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,14 +17,12 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleClick}
         >
-          Learn React
-        </a>
+          Obtener token
+        </button>
+        {token}
       </header>
     </div>
   );
